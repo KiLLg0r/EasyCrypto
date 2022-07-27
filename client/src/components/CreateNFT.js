@@ -63,7 +63,7 @@ const CreateNFT = () => {
     let transaction = await contract.createToken(url, price, { value: listingPrice });
     await transaction.wait();
 
-    router("/marketplace");
+    router("../marketplace");
   }
 
   return (

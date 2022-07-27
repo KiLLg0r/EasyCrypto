@@ -49,18 +49,29 @@ const MyNFTs = () => {
     setLoadingState("loaded");
   }
 
-  if (loadingState === "loaded" && !nfts.length) return <h1>No NFTs owned</h1>;
+  if (loadingState === "loaded" && !nfts.length)
+    return (
+      <Layout>
+        <h1>No NFTs owned</h1>
+      </Layout>
+    );
   return (
     <Layout>
       <Grid.Container>
         {nfts &&
           nfts.map((nft, index) => (
-            <Grid xs={4} key={index}>
-              <Card>
+            <Grid key={index}>
+              <Card css={{ height: "fit-content", minHeight: "450px", width: "300px" }}>
                 <Card.Body>
                   <Col>
-                    <img src={nft.image} alt="NFT placeholder" />
-                    <Text h4>{nft.name}</Text>
+                    {console.log(nft)}
+                    <img
+                      src={nft.image}
+                      alt="NFT placeholder"
+                      width={300}
+                      height={300}
+                      style={{ objectFit: "cover", borderRadius: "0.625rem" }}
+                    />
                     <Text h3>{nft.price} ETH</Text>
                   </Col>
                 </Card.Body>

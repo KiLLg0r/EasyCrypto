@@ -7,6 +7,7 @@ import Transactions from "./components/Transactions";
 import MyNFTs from "./components/MyNFTs";
 import CreateNFT from "./components/CreateNFT";
 import Marketplace from "./components/Marketplace";
+import Header from "./components/Header";
 
 function App() {
   const lightTheme = createTheme({
@@ -40,6 +41,7 @@ function App() {
   return (
     <NextUIProvider theme={darkMode.value ? darkTheme : lightTheme}>
       <Router>
+        <Header />
         <Routes>
           <Route path="/" element={<Transactions />} />
           <Route path="/create-nft" element={<CreateNFT />} />

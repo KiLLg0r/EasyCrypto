@@ -65,18 +65,30 @@ const Marketplace = () => {
     loadNFTs();
   };
 
-  if (loadingState === "loaded" && !nfts.length) return <h1 className="">No items in marketplace</h1>;
+  if (loadingState === "loaded" && !nfts.length)
+    return (
+      <Layout>
+        <h1 className="">No items in marketplace</h1>
+      </Layout>
+    );
 
   return (
     <Layout>
-      <Grid.Container>
+      <Grid.Container gap={2}>
         {nfts &&
           nfts.map((nft, index) => (
-            <Grid xs={4} key={index}>
-              <Card>
+            <Grid key={index}>
+              <Card css={{ height: "fit-content", minHeight: "450px", width: "300px" }}>
                 <Card.Body>
+                  {console.log(nft)}
                   <Col>
-                    <img src={nft.image} alt="NFT placeholder" />
+                    <img
+                      src={nft.image}
+                      alt="NFT placeholder"
+                      width={300}
+                      height={300}
+                      style={{ objectFit: "cover", borderRadius: "0.625rem" }}
+                    />
                     <Text h4>{nft.name}</Text>
                     <Text p css={{ overflow: "hidden", height: "2rem" }}>
                       {nft.description}
@@ -85,7 +97,9 @@ const Marketplace = () => {
                   </Col>
                 </Card.Body>
                 <Card.Footer>
-                  <Button onPress={() => buyNFT(nft)}>Buy</Button>
+                  <Button onPress={() => buyNFT(nft)} css={{ width: "100%" }}>
+                    Buy
+                  </Button>
                 </Card.Footer>
               </Card>
             </Grid>
