@@ -1,6 +1,7 @@
 header.header {
   padding: 1rem;
   display: flex;
+  gap: 1rem;
   align-items: center;
   justify-content: space-between;
   position: relative;
@@ -9,24 +10,77 @@ header.header {
 header.header .primaryNav {
   display: flex;
   gap: 1rem;
+  align-items: center;
 }
 
-header.header .primaryNav .primaryLinks {
+.header .nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.header .nav.mobile {
+  flex-flow: column;
+  position: absolute;
+  inset: 0;
+  z-index: 999;
+  height: 100vh;
+  width: 100%;
+  padding: 2rem;
+  gap: 1rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.header .nav.mobile .primaryLinks,
+.header .nav.mobile .links {
+  flex-flow: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.header .nav.mobile .primaryLinks {
+  z-index: 500;
+}
+
+.header .nav.mobile::before {
+  content: "";
+  position: absolute;
+  inset: -5rem;
+  background: var(--nextui-colors-navBackground);
+  height: calc(100vh + 5rem);
+  width: 150%;
+}
+
+.header.closed .nav.mobile {
+  transform: translateX(100%);
+  animation: fade-out 350ms linear;
+  display: none;
+}
+
+.header.open .nav.mobile {
+  transform: translateX(0);
+  animation: fade-in 350ms linear;
+  display: flex;
+}
+
+header.header .primaryLinks {
   display: flex;
   align-items: center;
   list-style: none;
   gap: 0.5rem;
 }
 
-header.header .primaryNav .primaryLinks li {
+header.header .primaryLinks li {
   margin-bottom: 0 !important;
 }
 
-header.header .primaryNav .primaryLinks li a {
+header.header .primaryLinks li a {
   color: var(--nextui-colors-text);
 }
 
-header.header .primaryNav .primaryLinks li a.active-link {
+header.header .primaryLinks li a.active-link {
   color: var(--nextui-colors-blue600);
 }
 
@@ -46,39 +100,7 @@ header.header .links {
 
 header.header .links li {
   list-style: none;
-}
-
-header.header .links.mobile {
-  flex-flow: column;
-  position: absolute;
-  inset: 0;
-  z-index: 999;
-  height: 100vh;
-  width: 100%;
-  padding: 2rem;
-  gap: 1rem;
-  align-items: flex-start;
-}
-
-header.header .links.mobile::before {
-  content: "";
-  position: absolute;
-  inset: -5rem;
-  background: var(--nextui-colors-navBackground);
-  height: calc(100vh + 5rem);
-  width: 150%;
-}
-
-header.header.closed .links.mobile {
-  transform: translateX(100%);
-  animation: fade-out 350ms linear;
-  display: none;
-}
-
-header.header.open .links.mobile {
-  transform: translateX(0);
-  animation: fade-in 350ms linear;
-  display: flex;
+  margin-bottom: 0 !important;
 }
 
 header.header .logo {

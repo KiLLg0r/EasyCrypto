@@ -22,7 +22,7 @@ const Header = () => {
 
   const [modalVisible, setModalVisible] = useState(false);
 
-  const mobileNav = size.width < 650;
+  const mobileNav = size.width < 1000;
   const [openNav, setOpenNav] = useState(false);
 
   const [connectedAccount] = useGlobalState("connectedAccount");
@@ -63,11 +63,17 @@ const Header = () => {
   return (
     <Container lg>
       <header className={`header ${openNav ? "open" : "closed"}`}>
-        <div className="primaryNav">
-          <div className="logo">
-            <span className="accentLogoName">Easy</span>
-            <span>Crypto</span>
-          </div>
+        <div className="logo">
+          <span className="accentLogoName">Easy</span>
+          <span>Crypto</span>
+        </div>
+        {mobileNav &&
+          (!openNav ? (
+            <GiHamburgerMenu className="hamburger" onClick={() => setOpenNav(true)} />
+          ) : (
+            <BiX className="hamburger" onClick={() => setOpenNav(false)} style={{ fontSize: "2rem" }} />
+          ))}
+        <div className={`nav ${mobileNav && "mobile"}`}>
           <nav className="primaryLinks">
             <li>
               <NavLink className="nav-link" to="/" style={({ isActive }) => (isActive ? activeLink : undefined)}>
@@ -103,55 +109,49 @@ const Header = () => {
               </NavLink>
             </li>
           </nav>
-        </div>
-        {mobileNav &&
-          (!openNav ? (
-            <GiHamburgerMenu className="hamburger" onClick={() => setOpenNav(true)} />
-          ) : (
-            <BiX className="hamburger" onClick={() => setOpenNav(false)} style={{ fontSize: "2rem" }} />
-          ))}
-        <nav className={`links ${mobileNav && "mobile"}`}>
-          <li>
-            <Row align="center">
-              {mobileNav && (
-                <>
-                  Dark mode <Spacer x={0.5} />
-                </>
-              )}
-              <Switch
-                checked={darkMode.value}
-                onChange={() => darkMode.toggle()}
-                iconOn={<BsMoonFill />}
-                iconOff={<BsFillSunFill />}
-              />
-            </Row>
-          </li>
-          {connectedAccount && (
+          <nav className="links">
             <li>
               <Row align="center">
                 {mobileNav && (
                   <>
-                    Balance <Spacer x={0.5} />
+                    Dark mode <Spacer x={0.5} />
                   </>
                 )}
-                <FaEthereum />
-                <Spacer x={0.5} />
-                {balance.slice(0, 10)} ETH
+                <Switch
+                  checked={darkMode.value}
+                  onChange={() => darkMode.toggle()}
+                  iconOn={<BsMoonFill />}
+                  iconOff={<BsFillSunFill />}
+                />
               </Row>
             </li>
-          )}
-          <li>
-            <Button
-              auto
-              onPress={() => {
-                if (connectedAccount) setModalVisible(true);
-                else connectWallet();
-              }}
-            >
-              New transfer
-            </Button>
-          </li>
-        </nav>
+            {connectedAccount && (
+              <li>
+                <Row align="center">
+                  {mobileNav && (
+                    <>
+                      Balance <Spacer x={0.5} />
+                    </>
+                  )}
+                  <FaEthereum />
+                  <Spacer x={0.5} />
+                  {balance.slice(0, 10)} ETH
+                </Row>
+              </li>
+            )}
+            <li>
+              <Button
+                auto
+                onPress={() => {
+                  if (connectedAccount) setModalVisible(true);
+                  else connectWallet();
+                }}
+              >
+                New transfer
+              </Button>
+            </li>
+          </nav>
+        </div>
         <Modal
           closeButton
           aria-labelledby="Transfer crypto"
