@@ -1,7 +1,7 @@
 import { Button, Modal, Text, Input, Loading, Row, Spacer, Switch, Container } from "@nextui-org/react";
 import useDarkMode from "use-dark-mode";
 
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FaEthereum } from "react-icons/fa";
@@ -33,6 +33,10 @@ const Header = () => {
   const [loading, setLoading] = useState(false);
 
   const darkMode = useDarkMode(false);
+
+  const activeLink = {
+    color: "var(--nextui-colors-blue600)",
+  };
 
   const handleSubmit = () => {
     setLoading(true);
@@ -66,24 +70,37 @@ const Header = () => {
           </div>
           <nav className="primaryLinks">
             <li>
-              <Link className="nav-link" to="/">
+              <NavLink className="nav-link" to="/" style={({ isActive }) => (isActive ? activeLink : undefined)}>
                 Transfers
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link className="nav-link" to="/marketplace">
+              <NavLink
+                className="nav-link"
+                to="/marketplace"
+                style={({ isActive }) => (isActive ? activeLink : undefined)}
+              >
                 Marketplace
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link className="nav-link" to="/my-nfts">
+              <NavLink className="nav-link" to="/my-nfts" style={({ isActive }) => (isActive ? activeLink : undefined)}>
                 My NFTs
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link className="nav-link" to="/create-nft">
+              <NavLink
+                className="nav-link"
+                to="/dashboard"
+                style={({ isActive }) => (isActive ? activeLink : undefined)}
+              >
+                Listed NFTs
+              </NavLink>
+            </li>
+            <li>
+              <NavLink className="nav-link" to="/create-nft">
                 Create NFT
-              </Link>
+              </NavLink>
             </li>
           </nav>
         </div>

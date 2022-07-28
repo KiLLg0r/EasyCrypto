@@ -6,9 +6,10 @@ import Web3Modal from "web3modal";
 
 import { nftContractAbi, nftContractAddress } from "../utils/constants";
 
-import { Button, Card, Grid, Col, Text } from "@nextui-org/react";
+import { Button, Grid, Text } from "@nextui-org/react";
 
 import Layout from "./Layout";
+import NFT from "./NFT";
 
 const Marketplace = () => {
   const [nfts, setNfts] = useState([]);
@@ -75,33 +76,26 @@ const Marketplace = () => {
   return (
     <Layout>
       <Grid.Container gap={2}>
+        <Grid xs={12}>
+          <Text h2 color="primary">
+            NFT Market
+          </Text>
+        </Grid>
         {nfts &&
           nfts.map((nft, index) => (
             <Grid key={index}>
-              <Card css={{ height: "fit-content", minHeight: "450px", width: "300px" }}>
-                <Card.Body>
-                  {console.log(nft)}
-                  <Col>
-                    <img
-                      src={nft.image}
-                      alt="NFT placeholder"
-                      width={300}
-                      height={300}
-                      style={{ objectFit: "cover", borderRadius: "0.625rem" }}
-                    />
-                    <Text h4>{nft.name}</Text>
-                    <Text p css={{ overflow: "hidden", height: "2rem" }}>
-                      {nft.description}
-                    </Text>
-                    <Text h3>{nft.price} ETH</Text>
-                  </Col>
-                </Card.Body>
-                <Card.Footer>
+              {console.log(nft)}
+              <NFT
+                img={nft.image}
+                name={nft.name}
+                desc={nft.description}
+                price={nft.price}
+                button={
                   <Button onPress={() => buyNFT(nft)} css={{ width: "100%" }}>
                     Buy
                   </Button>
-                </Card.Footer>
-              </Card>
+                }
+              />
             </Grid>
           ))}
       </Grid.Container>

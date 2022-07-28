@@ -8,6 +8,8 @@ import MyNFTs from "./components/MyNFTs";
 import CreateNFT from "./components/CreateNFT";
 import Marketplace from "./components/Marketplace";
 import Header from "./components/Header";
+import Dashboard from "./components/Dashboard";
+import Resell from "./components/Resell";
 
 function App() {
   const lightTheme = createTheme({
@@ -47,6 +49,8 @@ function App() {
           <Route path="/create-nft" element={<CreateNFT />} />
           <Route path="/marketplace" element={<Marketplace />} />
           <Route path="/my-nfts" element={<MyNFTs />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/resell-nft" element={<Resell />} />
         </Routes>
       </Router>
     </NextUIProvider>
