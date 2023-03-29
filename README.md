@@ -1,5 +1,10 @@
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)]()
 ![Logo](https://firebasestorage.googleapis.com/v0/b/volunteerish-ed549.appspot.com/o/EasyCrypto%2FEasyCrypto.png?alt=media&token=1e07b43f-6cf5-4ff2-af4b-bff3c6169fde)
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)]()
+
+Backend (solidity contract): [EasyCrypto-Smart-Contract](https://github.com/KiLLg0r/EasyCrypto-Smart-Contract)
+
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)]()
 # EasyCrypto :coin:
 
